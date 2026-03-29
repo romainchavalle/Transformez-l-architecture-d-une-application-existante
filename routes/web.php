@@ -2,7 +2,6 @@
 
 use Illuminate\Support\Facades\Route;
 use Livewire\Volt\Volt;
-use App\Http\Controllers\NoteController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -18,8 +17,6 @@ Route::middleware(['auth'])->group(function () {
     Volt::route('settings/profile', 'settings.profile')->name('settings.profile');
     Volt::route('settings/password', 'settings.password')->name('settings.password');
     Volt::route('settings/appearance', 'settings.appearance')->name('settings.appearance');
-    Route::view('/notes', 'dashboard');
-    Route::view('/tags', 'dashboard');
 });
 
 require __DIR__.'/auth.php';
