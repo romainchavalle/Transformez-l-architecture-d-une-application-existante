@@ -51,6 +51,7 @@ class NoteController extends Controller
     public function store(StoreNoteRequest $request): JsonResponse
     {
         $note = $this->noteService->create($request->user(), $request->validated());
+        $note->load('tag');
         
         return response()->json([
             'data' => $note,
