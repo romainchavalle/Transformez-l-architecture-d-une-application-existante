@@ -18,13 +18,9 @@ export const useNoteStore = create((set) => ({
   },
 
   addNote: async (noteData) => {
-    try {
-      const newNote = await createNoteCall(noteData);
-      set((state) => ({ notes: [...state.notes, newNote] }));
-      return true;
-    } catch (e) {
-      throw e;
-    }
+    const newNote = await createNoteCall(noteData);
+    set((state) => ({ notes: [...state.notes, newNote] }));
+    return true;
   },
 
   removeNote: async (id) => {

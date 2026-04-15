@@ -18,12 +18,8 @@ export const useTagStore = create((set) => ({
   },
 
   addTag: async (name) => {
-    try {
-      const newTag = await createTagCall(name);
-      set((state) => ({ tags: [...state.tags, newTag] }));
-      return true;
-    } catch (e) {
-      throw e;
-    }
+    const newTag = await createTagCall(name);
+    set((state) => ({ tags: [...state.tags, newTag] }));
+    return true;
   }
 }));
