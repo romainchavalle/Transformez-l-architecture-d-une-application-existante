@@ -47,8 +47,12 @@ php artisan migrate --seed
 # 4. Lancer le serveur local
 php artisan serve
 
+```
+
 ### Étape 2 : Démarrer le FrontEnd (react)
 
+
+```bash
 # 1. Se rendre dans le répertoire front
 cd frontend
 
@@ -57,3 +61,5 @@ npm install
 
 # 3. Lancer le serveur de développement Vite
 npm run dev
+
+```
