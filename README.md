@@ -1,65 +1,78 @@
-# 📝 Notes App - Refonte Architecturale (API REST & React SPA)
+# 📝 Notes App - Architectural Refactoring (REST API & React SPA)
 
-## 📖 Description du Projet
-Ce projet est le résultat de la refonte architecturale d'une application de prise de notes (initialement conçue comme un monolithe Laravel avec Blade et Livewire). 
-L'application a été entièrement réécrite pour adopter une architecture moderne, découplée et évolutive :
-- Un **Back-end API REST** sécurisé et robuste.
-- Un **Front-end Single Page Application (SPA)** dynamique.
+> A complete architectural redesign transforming a legacy monolithic application into a modern, decoupled, and highly scalable Full-Stack platform.
 
-## 🚀 Architecture Cible & Technologies
+![PHP](https://img.shields.io/badge/PHP-777BB4?style=for-the-badge&logo=php&logoColor=white)
+![Laravel](https://img.shields.io/badge/Laravel_12-FF2D20?style=for-the-badge&logo=laravel&logoColor=white)
+![React](https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB)
+![SQLite](https://img.shields.io/badge/SQLite-003B57?style=for-the-badge&logo=sqlite&logoColor=white)
 
-### 1. Back-End (API REST)
-- **Framework :** Laravel 12
-- **Base de données :** SQLite
-- **Sécurité :** Authentification par jetons via **Laravel Sanctum** (Bearer Tokens).
-- **Conception :** Application des principes **SOLID** :
-  - Routage API isolé (`routes/api.php`).
-  - Validation déportée dans des `FormRequests` dédiés.
-  - Logique métier encapsulée dans des `Services` (SRP).
-  - Contrôleurs allégés (Skinny Controllers).
+## 📖 Overview & Business Logic
 
-### 2. Front-End (SPA Client)
-- **Environnement :** React + Vite (pour des performances de développement optimales).
-- **State Management :** **Zustand**, utilisé pour sa légèreté et sa simplicité dans la gestion de l'état global.
-- **Client HTTP :** **Axios**, configuré avec un système d'intercepteurs pour l'injection automatique et transparente des tokens de sécurité.
-- **Routage :** React Router avec mise en place de "Guards" pour protéger l'accès aux routes privées.
-- **Structure :** Architecture "Feature-based" (regroupement par domaine fonctionnel : Notes, Auth) favorisant la maintenabilité.
+This project is a **Note-Taking Application** that allows users to securely create, read, update, and delete their personal notes. 
 
-## 🛠️ Installation & Démarrage Local
+While the functional scope (taking notes) is straightforward, **the true purpose of this repository is an architectural demonstration.** It showcases the process of migrating a legacy Laravel Monolith (Blade + Livewire) into a decoupled ecosystem with a headless REST API and an independent Single Page Application (SPA).
 
-L'application étant découplée, le serveur API et le client Front-end doivent être démarrés séparément dans deux terminaux.
+---
 
-### Étape 1 : Démarrer le Backend (API Laravel)
-Depuis la racine du projet :
+## 🚀 Target Architecture & Technologies
+
+### 1. Back-End (REST API)
+The backend was heavily refactored to serve as a pure API provider.
+- **Framework:** Laravel 12
+- **Database:** SQLite
+- **Security:** Token-based authentication using **Laravel Sanctum** (Bearer Tokens).
+- **Design Patterns:** Strict application of **SOLID** principles:
+  - Isolated API routing (`routes/api.php`).
+  - Request validation moved entirely to dedicated `FormRequests`.
+  - Business logic encapsulated inside `Services` (Single Responsibility Principle).
+  - Implementation of "Skinny Controllers".
+
+### 2. Front-End (Client SPA)
+The frontend was entirely rebuilt from scratch to consume the new API.
+- **Environment:** React + Vite (for optimal development performance).
+- **State Management:** **Zustand**, chosen for its lightweight and simple approach to global state.
+- **HTTP Client:** **Axios**, configured with an interceptor system for automatic and transparent injection of security tokens.
+- **Routing:** React Router with custom "Guards" to protect private routes (e.g., dashboard).
+- **Structure:** "Feature-based" architecture (grouped by functional domain: Notes, Auth) promoting long-term maintainability.
+
+---
+
+## 🛠️ Local Installation & Startup
+
+Because the application is decoupled, the API server and the Frontend client must be started separately in two different terminals.
+
+### Step 1: Start the Backend (Laravel API)
+From the project root:
 
 ```bash
-# 1. Installer les dépendances PHP
+# 1. Install PHP dependencies
 composer install
 
-# 2. Configurer le fichier d'environnement
+# 2. Configure environment file
 cp .env.example .env
 php artisan key:generate
 
-# 3. Initialiser la base de données SQLite
+# 3. Initialize SQLite database
 touch database/database.sqlite
 php artisan migrate --seed
 
-# 4. Lancer le serveur local
+# 4. Launch local server
 php artisan serve
-
 ```
 
-### Étape 2 : Démarrer le FrontEnd (react)
-
+### Step 2: Start the Frontend (React)
 
 ```bash
-# 1. Se rendre dans le répertoire front
+# 1. Navigate to the frontend directory
 cd frontend
 
-# 2. Installer les dépendances Node.js
+# 2. Install Node.js dependencies
 npm install
 
-# 3. Lancer le serveur de développement Vite
+# 3. Launch Vite development server
 npm run dev
-
 ```
+
+---
+*Architectural refactoring performed by Romain Chavalle.*
